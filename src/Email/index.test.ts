@@ -33,6 +33,6 @@ describe('Utils/isValidEmail', () => {
 	});
 
 	it(`Must return Truthy`, () => {
-		expect(isValidEmail(undefined as unknown as string)).toBeFalsy();
+		expect(isValidEmail(undefined as unknown as string)).toEqual(false);
 	});
 });
