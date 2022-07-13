@@ -1,65 +1,81 @@
 import {
-	StringToDate,
-	StringToDateHour,
-	StringToDateIso,
-	FormatDateAndHour,
-	FormatDate,
-	FormatHour,
-	AddDays,
-	FinalOfDay,
+	stringToDate,
+	stringToDateHour,
+	stringToDateIso,
+	formatDateAndHour,
+	formatDate,
+	formatHour,
+	addDays,
+	finalOfDay,
 	dateForReport,
+	isValidDate,
 } from '.';
 
-describe('Validate StringToDate', () => {
+describe('Validate isValidDate', () => {
+	test('Must result true', () => {
+		const result = isValidDate(new Date('1991-05-31'));
+		expect(result).toEqual(true);
+	});
+	test('Must result false', () => {
+		const result = isValidDate(new Date('Test'));
+		expect(result).toEqual(false);
+	});
+	test('Must result false', () => {
+		const result = isValidDate(undefined as unknown as Date);
+		expect(result).toEqual(false);
+	});
+});
+
+describe('Validate stringToDate', () => {
 	test('Must result correct New Date with parameter correct', () => {
-		const result = StringToDate('31/05/1991');
+		const result = stringToDate('31/05/1991');
 		expect(result).toEqual(new Date(1991, 4, 31));
 	});
 
 	test('Must result correct New Date with parameter null', () => {
-		const result = StringToDate(null as unknown as string);
+		const result = stringToDate(null as unknown as string);
 		expect(result.toDateString()).toEqual(new Date().toDateString());
 	});
 
 	test('Must result correct New Date with parameter incorrect', () => {
-		const result = StringToDate('31-05-1991');
+		const result = stringToDate('31-05-1991');
 		expect(result.toDateString()).toEqual(new Date().toDateString());
 	});
 });
 
-describe('Validate StringToDateHour', () => {
+describe('Validate stringToDateHour', () => {
 	test('Must result correct New Date with parameter correct', () => {
-		const result = StringToDateHour('31/05/1991 12:30:01');
+		const result = stringToDateHour('31/05/1991 12:30:01');
 		expect(result).toEqual(new Date(1991, 4, 31, 12, 30, 1));
 	});
 
 	test('Must result correct New Date with parameter null', () => {
-		const result = StringToDateHour(null as unknown as string);
+		const result = stringToDateHour(null as unknown as string);
 		expect(result.toDateString()).toEqual(new Date().toDateString());
 	});
 
 	test('Must result correct New Date with parameter incorrect', () => {
-		const result = StringToDateHour('31-05-1991 12 00 00');
+		const result = stringToDateHour('31-05-1991 12 00 00');
 		expect(result.toDateString()).toEqual(new Date().toDateString());
 	});
 });
 
-describe('Validate StringToDateIso', () => {
+describe('Validate stringToDateIso', () => {
 	test('Must result correct date with parameter correct', () => {
-		const result = StringToDateIso('31/05/1991');
+		const result = stringToDateIso('31/05/1991');
 		expect(result).toEqual('1991-05-31');
 	});
 
 	test('Must result empty string with parameter null', () => {
-		const result = StringToDateIso(null as unknown as string);
+		const result = stringToDateIso(null as unknown as string);
 		expect(result).toEqual('');
 	});
 });
 
-describe('Validate FormatDateAndHour', () => {
+describe('Validate formatDateAndHour', () => {
 	test('Must result correct Date and Hour Format with parameter correct', () => {
 		const fixture = '2021-05-31T12:30:00Z';
-		const result = FormatDateAndHour(new Date(fixture));
+		const result = formatDateAndHour(new Date(fixture));
 		expect(result).toEqual(
 			new Intl.DateTimeFormat('pt-BR', {
 				year: 'numeric',
@@ -69,67 +85,67 @@ describe('Validate FormatDateAndHour', () => {
 				minute: 'numeric',
 				second: 'numeric',
 				hour12: false,
-				timeZone: 'America/Sao_Paulo',
+				timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 			}).format(new Date(fixture))
 		);
 	});
 
 	test('Must result empty string with parameter incorrect', () => {
 		const fixture = '0001-01-01T00:00:00';
-		const result = FormatDateAndHour(new Date(fixture));
+		const result = formatDateAndHour(new Date(fixture));
 		expect(result).toEqual('');
 	});
 
 	test('Must result empty string with parameter incorrect', () => {
-		const result = FormatDateAndHour(new Date(''));
+		const result = formatDateAndHour(new Date(''));
 		expect(result).toEqual('');
 	});
 });
 
-describe('Validate FormatDate', () => {
+describe('Validate formatDate', () => {
 	test('Must result correct Date in Format (DD/MM/YYYY) with parameter correct', () => {
 		const fixture = '2021-01-01T15:00:00Z';
-		const result = FormatDate(new Date(fixture));
+		const result = formatDate(new Date(fixture));
 		expect(result).toEqual(
 			new Intl.DateTimeFormat('pt-BR', {
 				year: 'numeric',
 				month: 'numeric',
 				day: 'numeric',
-				timeZone: 'America/Sao_Paulo',
+				timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 			}).format(new Date(fixture))
 		);
 	});
 
 	test('Must result empty string with parameter incorrect', () => {
-		const result = FormatDate(new Date(''));
+		const result = formatDate(new Date(''));
 		expect(result).toEqual('');
 	});
 });
 
-describe('Validate FormatHour', () => {
+describe('Validate formatHour', () => {
 	test('Must result correct hour with parameter correct', () => {
 		const fixture = '2021-01-01T15:00:00Z';
-		const result = FormatHour(new Date(fixture));
+		const result = formatHour(new Date(fixture));
 		expect(result).toEqual(
 			new Intl.DateTimeFormat('pt-BR', {
 				hour: 'numeric',
 				minute: 'numeric',
 				second: 'numeric',
-				timeZone: 'America/Sao_Paulo',
+				timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 			}).format(new Date(fixture))
 		);
 	});
 
 	test('Must result empty string with parameter incorrect', () => {
-		const result = FormatHour(new Date(''));
+		const result = formatHour(new Date(''));
 		expect(result).toEqual('');
 	});
 });
 
-describe('Validate AddDays', () => {
+describe('Validate addDays', () => {
 	test('Must result correct new date parameter positive', () => {
 		const fixture = '2021-01-01T15:00:00Z';
-		const result = AddDays(new Date(fixture), 5);
+		const result = addDays(new Date(fixture), 5);
 
 		const dateNew = new Date(fixture);
 		dateNew.setDate(dateNew.getDate() + 5);
@@ -138,7 +154,7 @@ describe('Validate AddDays', () => {
 
 	test('Must result correct new date with parameter negative', () => {
 		const fixture = '2021-01-01T15:00:00Z';
-		const result = AddDays(new Date(fixture), -1);
+		const result = addDays(new Date(fixture), -1);
 
 		const dateNew = new Date(fixture);
 		dateNew.setDate(dateNew.getDate() + -1);
@@ -146,11 +162,11 @@ describe('Validate AddDays', () => {
 	});
 });
 
-describe('Validate FinalOfDay', () => {
+describe('Validate finalOfDay', () => {
 	test('Must result correct date and hour', () => {
 		const fixture = '2021-01-01T15:00:00Z';
-		const result = FinalOfDay(new Date(fixture));
-		const dateNew = AddDays(new Date(fixture), 1);
+		const result = finalOfDay(new Date(fixture));
+		const dateNew = addDays(new Date(fixture), 1);
 		expect(result).toEqual(new Date(new Date(dateNew).getTime() - 1));
 	});
 });

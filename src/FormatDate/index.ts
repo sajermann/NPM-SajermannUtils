@@ -1,8 +1,19 @@
+/**
+ * ## IsValidDate
+ * ### Verify if date is valid
+ * @formatPatternIncoming "new Date()"
+ * @example "new Date(2022, 1, 1)"
+ * @returns "true"
+ */
 function isValidDate(date: Date): boolean {
-	if (date.toString() === 'Invalid Date') {
+	try {
+		if (date.toString() === 'Invalid Date') {
+			return false;
+		}
+		return date instanceof Date && !Number.isNaN(date);
+	} catch {
 		return false;
 	}
-	return date instanceof Date && !Number.isNaN(date);
 }
 
 /**
@@ -12,7 +23,7 @@ function isValidDate(date: Date): boolean {
  * @example "31/05/1991"
  * @returns "new Date()"
  */
-export function StringToDate(data: string): Date {
+function stringToDate(data: string): Date {
 	try {
 		const arrayValues = data.split('/');
 		const year = parseInt(arrayValues[2], 10);
@@ -35,7 +46,7 @@ export function StringToDate(data: string): Date {
  * @example "31/05/1991 12:30:01"
  * @returns "new Date()"
  */
-export function StringToDateHour(data: string): Date {
+function stringToDateHour(data: string): Date {
 	try {
 		const arrayValues = data.split(' ');
 		const arrayDate = arrayValues[0].split('/');
@@ -63,7 +74,7 @@ export function StringToDateHour(data: string): Date {
  * @example "31/05/1991"
  * @returns "1991-05-31"
  */
-export function StringToDateIso(data: string): string {
+function stringToDateIso(data: string): string {
 	try {
 		const arrayValues = data.split('/');
 		const year = parseInt(arrayValues[2], 10);
@@ -83,7 +94,7 @@ export function StringToDateIso(data: string): string {
  * @example "2021-01-01T00:00:00Z"
  * @returns "01/01/2021 00:00:00"
  */
-export function FormatDateAndHour(date: Date): string {
+function formatDateAndHour(date: Date): string {
 	try {
 		if (date.toISOString().indexOf('0001-01-01') === 0) {
 			return '';
@@ -96,7 +107,7 @@ export function FormatDateAndHour(date: Date): string {
 			minute: 'numeric',
 			second: 'numeric',
 			hour12: false,
-			timeZone: 'America/Sao_Paulo',
+			timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 		}).format(new Date(date));
 		return result;
 	} catch {
@@ -111,13 +122,13 @@ export function FormatDateAndHour(date: Date): string {
  * @example "2021-01-01T00:00:00Z"
  * @returns "01/01/2021"
  */
-export function FormatDate(date: Date): string {
+function formatDate(date: Date): string {
 	try {
 		return new Intl.DateTimeFormat('pt-BR', {
 			year: 'numeric',
 			month: 'numeric',
 			day: 'numeric',
-			timeZone: 'America/Sao_Paulo',
+			timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 		}).format(new Date(date));
 	} catch {
 		return '';
@@ -131,13 +142,13 @@ export function FormatDate(date: Date): string {
  * @example "2021-01-01T15:00:00Z"
  * @returns "15:00"
  */
-export function FormatHour(date: Date): string {
+function formatHour(date: Date): string {
 	try {
 		return new Intl.DateTimeFormat('pt-BR', {
 			hour: 'numeric',
 			minute: 'numeric',
 			second: 'numeric',
-			timeZone: 'America/Sao_Paulo',
+			timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 		}).format(new Date(date));
 	} catch {
 		return '';
@@ -151,7 +162,7 @@ export function FormatHour(date: Date): string {
  * @example "2021-01-01T15:00:00Z"
  * @returns "2021-01-06T15:00:00Z"
  */
-export function AddDays(date: Date, days: number): Date {
+function addDays(date: Date, days: number): Date {
 	const dateNew = new Date(date);
 	dateNew.setDate(date.getDate() + days);
 	return dateNew;
@@ -164,8 +175,8 @@ export function AddDays(date: Date, days: number): Date {
  * @example "2021-01-01T15:00:00Z"
  * @returns "2021-01-01T23:59:59Z"
  */
-export function FinalOfDay(date: Date): Date {
-	const dateNew = AddDays(new Date(date), 1);
+function finalOfDay(date: Date): Date {
+	const dateNew = addDays(new Date(date), 1);
 	return new Date(new Date(dateNew).getTime() - 1);
 }
 
@@ -176,7 +187,7 @@ export function FinalOfDay(date: Date): Date {
  * @example "2021-01-01T15:00:00Z"
  * @returns "2021.01.01_23.59"
  */
-export function dateForReport(): string {
+function dateForReport(): string {
 	const now = new Date();
 	const day = now.getDate();
 	const month =
@@ -188,3 +199,16 @@ export function dateForReport(): string {
 
 	return `${year}.${month}.${day}_${hour}.${minutes}`;
 }
+
+export {
+	isValidDate,
+	stringToDate,
+	stringToDateHour,
+	stringToDateIso,
+	formatDateAndHour,
+	formatDate,
+	formatHour,
+	addDays,
+	finalOfDay,
+	dateForReport,
+};
