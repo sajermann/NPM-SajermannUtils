@@ -7,7 +7,6 @@ import {
 	formatHour,
 	addDays,
 	finalOfDay,
-	dateForReport,
 	isValidDate,
 } from '.';
 
@@ -168,22 +167,5 @@ describe('Validate finalOfDay', () => {
 		const result = finalOfDay(new Date(fixture));
 		const dateNew = addDays(new Date(fixture), 1);
 		expect(result).toEqual(new Date(new Date(dateNew).getTime() - 1));
-	});
-});
-
-describe('Validate DateForReport', () => {
-	test('Must result correct date and hour', () => {
-		const now = new Date();
-		const day = now.getDate();
-		const month =
-			now.getMonth() + 1 < 10 ? `0${now.getMonth() + 1}` : now.getMonth() + 1;
-		const year = now.getFullYear();
-		const hour = now.getHours() < 10 ? `0${now.getHours()}` : now.getHours();
-		const minutes =
-			now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes();
-		const resulCorrectly = `${year}.${month}.${day}_${hour}.${minutes}`;
-		const result = dateForReport();
-
-		expect(result).toEqual(resulCorrectly);
 	});
 });

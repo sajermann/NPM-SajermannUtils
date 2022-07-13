@@ -140,7 +140,7 @@ function formatDate(date: Date): string {
  * ### Convert Date to string
  * @formatPatternIncoming "yyyy-MM-ddTHH:mm:ssZ"
  * @example "2021-01-01T15:00:00Z"
- * @returns "15:00"
+ * @returns "15:00:00"
  */
 function formatHour(date: Date): string {
 	try {
@@ -180,26 +180,6 @@ function finalOfDay(date: Date): Date {
 	return new Date(new Date(dateNew).getTime() - 1);
 }
 
-/**
- * ## DateForReport
- * ### Returns string date in format YYYY.MM.DD_HH.mm
- * @formatPatternIncoming "date: new Date()"
- * @example "2021-01-01T15:00:00Z"
- * @returns "2021.01.01_23.59"
- */
-function dateForReport(): string {
-	const now = new Date();
-	const day = now.getDate();
-	const month =
-		now.getMonth() + 1 < 10 ? `0${now.getMonth() + 1}` : now.getMonth() + 1;
-	const year = now.getFullYear();
-	const hour = now.getHours() < 10 ? `0${now.getHours()}` : now.getHours();
-	const minutes =
-		now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes();
-
-	return `${year}.${month}.${day}_${hour}.${minutes}`;
-}
-
 export {
 	isValidDate,
 	stringToDate,
@@ -210,5 +190,4 @@ export {
 	formatHour,
 	addDays,
 	finalOfDay,
-	dateForReport,
 };
