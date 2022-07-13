@@ -2,6 +2,78 @@
 
 Conjunto de funções utilitárias que eu cansei de copiar e colar em todos os meus projetos
 
+## Base64
+
+### b64EncodeUnicode
+Converte uma string em base64
+| Incoming Type | Return Type | Example Use| Return |
+|--|--|--|--|
+| string | string | b64EncodeUnicode("AÁoõ!@#UÚ") | "QcOBb8O1IUAjVcOa" |
+
+### b64DecodeUnicode
+Converte um base64 em string
+| Incoming Type | Return Type | Example Use| Return |
+|--|--|--|--|
+| string | string | b64EncodeUnicode("QcOBb8O1IUAjVcOa") | "AÁoõ!@#UÚ" |
+
+## CnpjCpf
+
+### isValidCnpj
+Verifica se o Cnpj é valido
+| Incoming Type | Return Type | Example Use| Return |
+|--|--|--|--|
+| string | boolean | isValidCnpj("12345678901234") | false |
+
+### addCnpjMask
+Adiciona máscara de Cnpj na string
+| Incoming Type | Return Type | Example Use| Return |
+|--|--|--|--|
+| string | string | addCnpjMask("07526557000100") | "07.526.557/0001-00" |
+
+### removeCnpjMask
+Remove máscara de Cnpj na string
+| Incoming Type | Return Type | Example Use| Return |
+|--|--|--|--|
+| string | string | addCnpjMask("07.526.557/0001-00") | "07526557000100" |
+
+## Currency
+
+### formatForReal
+Formata o número para Real Brasileiro
+| Incoming Type | Return Type | Example Use| Return |
+|--|--|--|--|
+| number | string | formatForReal(10.99) | "R$ 10,99" |
+
+## Delay
+
+### delay
+Força a execução esperar por algum tempo
+| Incoming Type | Return Type | Example Use| Return |
+|--|--|--|--|
+| number | void | delay(3000) | void |
+
+## Email
+
+### isValidEmail
+Verifica se o email é válido
+| Incoming Type | Return Type | Example Use| Return |
+|--|--|--|--|
+| string | boolean | isValidEmail("sajermannbruno@gmail") | false |
+| string | boolean | isValidEmail("sajermannbruno@gmail.com") | true |
+
+## Random
+
+### generateNumbers
+Gera uma string de números aleatórios
+| Incoming Type | Return Type | Example Use| Return |
+|--|--|--|--|
+| number | string | generateNumbers(3) | string |
+
+### GenerateGuid
+Gera um novo Guid
+| Incoming Type | Return Type | Example Use| Return |
+|--|--|--|--|
+| - | string | generateGuid() | "58ae706d-25c6-4bfd-b8d9-68c7d2356eca" |
 
 ## FormatDate
 
@@ -48,13 +120,14 @@ Converte um Date para uma hora em string formatada
 | Date | string| formatHour("2021-01-01T15:00:00Z") | 15:00:00|
 
 ### AddDays
-Converte um Date para uma hora em string formatada
+Adiciona dias a uma data
 | Incoming Type | Return Type | Example Use| Return |
 |--|--|--|--|
 | Date, number | string| addDays("2021-01-01T15:00:00Z", 5) | 2021-01-06T15:00:00Z|
 
 ### FinalOfDay
-Converte um Date para uma hora em string formatada
+Retorna a última hora da data informada
 | Incoming Type | Return Type | Example Use| Return |
 |--|--|--|--|
 | Date | Date| finalOfDay("2021-01-01T15:00:00Z") | 2021-01-01T23:59:59Z|
+
