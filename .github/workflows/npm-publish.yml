@@ -6,7 +6,7 @@ name: Publish to NPM
 on:
    push:
     branches: [ main ]
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,7 +27,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: npm test
+      - run: npm install
+			- run: npm test
       - run: npm ci
       - run: npm publish
         env:
