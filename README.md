@@ -69,27 +69,27 @@ Gera uma string de números aleatórios
 |--|--|--|--|
 | number | string | generateNumbers(3) | string |
 
-### GenerateGuid
+### generateGuid
 Gera um novo Guid
 | Incoming Type | Return Type | Example Use| Return |
 |--|--|--|--|
 | - | string | generateGuid() | "58ae706d-25c6-4bfd-b8d9-68c7d2356eca" |
 
-## FormatDate
+## formatDate
 
-### IsValidDate
+### isValidDate
 Verifica se uma data é valida
 | Incoming Type | Return Type | Example Use| Return |
 |--|--|--|--|
 | Date | boolean | isValidDate(new Date()) | true |
 
-### StringToDate
+### stringToDate
 Converte uma data em string para Date
 | Incoming Type | Return Type | Example Use| Return |
 |--|--|--|--|
 | dd/MM/YYYY | Date| stringToDate("31/05/1991") | Fri May 31 1991 00:00:00 GMT-0300 (Brasilia Standard Time)|
 
-### StringToDateHour
+### stringToDateHour
 Converte uma data com hora em string para Date
 | Incoming Type | Return Type | Example Use| Return |
 |--|--|--|--|
@@ -101,31 +101,31 @@ Converte uma data em string para uma data ISO em string (Somente Data)
 |--|--|--|--|
 | dd/MM/YYYY | string| stringToDateIso("31/05/1991") | 1991-05-31|
 
-### FormatDateAndHour
+### formatDateAndHour
 Converte um Date para uma data em string formatada com data e hora
 | Incoming Type | Return Type | Example Use| Return |
 |--|--|--|--|
 | Date | string| formatDateAndHour("2021-01-01T00:00:00Z") | 01/01/2021 00:00:00|
 
-### FormatDate
+### formatDate
 Converte um Date para uma data em string formatada
 | Incoming Type | Return Type | Example Use| Return |
 |--|--|--|--|
 | Date | string| formatDate("2021-01-01T00:00:00Z") | 01/01/2021|
 
-### FormatHour
+### formatHour
 Converte um Date para uma hora em string formatada
 | Incoming Type | Return Type | Example Use| Return |
 |--|--|--|--|
 | Date | string| formatHour("2021-01-01T15:00:00Z") | 15:00:00|
 
-### AddDays
+### addDays
 Adiciona dias a uma data
 | Incoming Type | Return Type | Example Use| Return |
 |--|--|--|--|
 | Date, number | string| addDays("2021-01-01T15:00:00Z", 5) | 2021-01-06T15:00:00Z|
 
-### FinalOfDay
+### finalOfDay
 Retorna a última hora da data informada
 | Incoming Type | Return Type | Example Use| Return |
 |--|--|--|--|
