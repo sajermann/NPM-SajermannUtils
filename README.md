@@ -1,6 +1,7 @@
- # SajermannNpmUtils
+ # @sajermann/utils
 
-Conjunto de funções utilitárias que eu cansei de copiar e colar em todos os meus projetos.
+Conjunto de funções utilitárias que eu cansei de copiar e colar em todos os meus projetos. Esse projeto encontra-se em desenvolvimento,
+algumas funções podem mudar, atente-se a versão.
 
 ## Base64
 

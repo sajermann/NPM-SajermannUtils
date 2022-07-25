@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Ferramentas utilitárias utilizadas nos meus projetos.",
   "main": "index.ts",
+	"publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "jest",
     "build": "npx tsc",
@@ -35,7 +38,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sajermann/SajermannNpmUtils.git"
+    "url": "https://github.com/sajermann/NPM-SajermannUtils"
   },
   "keywords": [
     "format",
