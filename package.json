@@ -1,9 +1,9 @@
 {
   "name": "@sajermann/utils",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Ferramentas utilitárias utilizadas nos meus projetos.",
   "main": "index.ts",
-	"publishConfig": {
+  "publishConfig": {
     "access": "public"
   },
   "scripts": {
@@ -11,8 +11,8 @@
     "build": "npx tsc",
     "dev": "ts-node-dev src/index.ts",
     "start": "node build/index.js",
-		"copyRequiredsWindows": "@powershell copy './package.json' './build' && @powershell copy './README.md' './build'",
-		"copyRequiredsLinux": "cp './package.json' './build' && cp './README.md' './build'"
+    "copyRequiredsWindows": "@powershell copy './package.json' './build' && @powershell copy './README.md' './build'",
+    "copyRequiredsLinux": "cp './package.json' './build' && cp './README.md' './build'"
   },
   "dependencies": {
     "ts-node-dev": "^2.0.0"
