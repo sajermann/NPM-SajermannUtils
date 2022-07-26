@@ -19,7 +19,7 @@ jobs:
       - run: npm ci
       - run: npm test
 
-		test2:
+	test2:
     name: My first job
     runs-on: ubuntu-latest
     steps:
