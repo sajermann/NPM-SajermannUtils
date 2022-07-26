@@ -23,8 +23,8 @@ jobs:
       - run: ls ./build
 
   test3:
-    name: test2
-    needs: Build
+    name: test3
+    needs: test2
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
