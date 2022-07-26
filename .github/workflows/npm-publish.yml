@@ -18,8 +18,8 @@ jobs:
       - run: npm ci
       - run: npm test
 
-	test:
-		needs: build
+	build:
+		needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
