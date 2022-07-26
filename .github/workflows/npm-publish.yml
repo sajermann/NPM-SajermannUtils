@@ -17,9 +17,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm ci
-      - run: npm run build
-      - run: npm run copyRequiredsLinux
+      - name: CI
+      	run: npm ci
+      - name: Build
+      	run: npm run build
+      - name: Copy
+      	run: npm run copyRequiredsLinux
       - name: Verificar Arquivos
       	run: ls ./build
 
