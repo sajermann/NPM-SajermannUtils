@@ -18,6 +18,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
          node-version: 16
+         registry-url: https://registry.npmjs.org/
       - name: CI
         run: npm ci
       - name: Test
@@ -26,5 +27,8 @@ jobs:
         run: npm run build
       - name: Copy Files Requireds
         run: npm run copyRequiredsLinux
-      - name: List files in the repository
+      - name: List files in build directory
         run: ls ./build
+      - name: Publish to NPM
+        run: npm publish
+        env: NODE_AUTH_TOKEN: ${{secrets.TOKEN_FOR_GITHUB_PUBLISH_TO_NPM}}
