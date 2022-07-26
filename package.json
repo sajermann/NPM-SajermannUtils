@@ -1,6 +1,6 @@
 {
   "name": "@sajermann/utils",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Ferramentas utilitárias utilizadas nos meus projetos.",
   "main": "index.ts",
 	"publishConfig": {
