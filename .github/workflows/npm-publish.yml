@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    name: My first job
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,7 +20,7 @@ jobs:
       - run: npm test
 
   test2:
-    name: My first job
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,6 +28,8 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-      - run: npm test
+      - run: npm build
+      - run: npm copyRequireds
+      - run: ls
 
 
