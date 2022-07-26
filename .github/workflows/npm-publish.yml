@@ -21,17 +21,7 @@ jobs:
       - run: npm run build
       - run: npm run copyRequiredsLinux
       - run: ls ./build
-
-  test3:
-    name: test3
-    needs: test2
-    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm ci
-      - run: ls
+      - run: ls ./build
 
 
