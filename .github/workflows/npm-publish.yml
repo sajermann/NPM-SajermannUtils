@@ -22,6 +22,9 @@ jobs:
         run: npm ci
       - name: Test
         run: npm test
+      - name: Build
+        run: npm run build
+      - name: Copy Files Requireds
+        run: npm run copyRequiredsLinux
       - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
+        run: ls ./build
