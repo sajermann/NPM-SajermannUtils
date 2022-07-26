@@ -30,7 +30,7 @@ jobs:
           node-version: 16
       - run: npm ci
       - run: npm run build
-      - run: npm run copyRequireds
+      - run: npm run copyRequiredsLinux
       - run: ls
 
 
