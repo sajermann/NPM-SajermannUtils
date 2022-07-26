@@ -23,7 +23,7 @@ jobs:
       - run: ls ./build
 
   test3:
-    name: Build2
+    name: test2
     needs: Build
     runs-on: ubuntu-latest
     steps:
