@@ -9,7 +9,7 @@ on:
 
 jobs:
   test2:
-    name: Build
+    build: Build
     # needs: Test
     runs-on: ubuntu-latest
     steps:
@@ -17,13 +17,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: CI
-      	run: npm ci
-      - name: Build
-      	run: npm run build
-      - name: Copy
-      	run: npm run copyRequiredsLinux
-      - name: Verificar Arquivos
-      	run: ls ./build
+			- name: Say Hello
+      run: echo hello
+
 
 
