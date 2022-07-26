@@ -21,6 +21,7 @@ jobs:
 
   test2:
     name: Build
+		needs: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,8 +29,8 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-      - run: npm build
-      - run: npm copyRequireds
+      - run: npm run build
+      - run: npm run copyRequireds
       - run: ls
 
 
