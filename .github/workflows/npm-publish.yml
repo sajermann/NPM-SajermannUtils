@@ -18,7 +18,7 @@ jobs:
       - run: npm ci
       - run: npm test
 
-	test:
+	test2:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
