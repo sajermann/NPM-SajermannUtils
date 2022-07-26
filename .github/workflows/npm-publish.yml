@@ -20,7 +20,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run copyRequiredsLinux
-      - run: cd ./build
+      - run: cd /build
       - run: ls
 
 
