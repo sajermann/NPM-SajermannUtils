@@ -35,7 +35,7 @@ Adiciona máscara de Cnpj na string
 Remove máscara de Cnpj na string
 | Incoming Type | Return Type | Example Use| Return |
 |--|--|--|--|
-| string | string | addCnpjMask("07.526.557/0001-00") | "07526557000100" |
+| string | string | removeCnpjMask("07.526.557/0001-00") | "07526557000100" |
 
 ## Currency
 
