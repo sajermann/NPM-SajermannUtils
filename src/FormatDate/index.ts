@@ -31,11 +31,11 @@ function stringToDate(data: string): Date {
 		const day = parseInt(arrayValues[0], 10);
 		const result = new Date(year, month, day);
 		if (!isValidDate(result)) {
-			return new Date();
+			return new Date(1970);
 		}
 		return result;
 	} catch {
-		return new Date();
+		return new Date(1970);
 	}
 }
 
@@ -55,15 +55,15 @@ function stringToDateHour(data: string): Date {
 		const month = parseInt(arrayDate[1], 10) - 1;
 		const day = parseInt(arrayDate[0], 10);
 		const hour = parseInt(arrayHour[0], 10);
-		const minutes = parseInt(arrayHour[1], 10);
-		const seconds = parseInt(arrayHour[2], 10);
+		const minutes = parseInt(arrayHour[1], 10) || 0;
+		const seconds = parseInt(arrayHour[2], 10) || 0;
 		const result = new Date(year, month, day, hour, minutes, seconds);
 		if (!isValidDate(result)) {
-			return new Date();
+			return new Date(1970);
 		}
 		return result;
 	} catch {
-		return new Date();
+		return new Date(1970);
 	}
 }
 
@@ -163,9 +163,13 @@ function formatHour(date: Date): string {
  * @returns "2021-01-06T15:00:00Z"
  */
 function addDays(date: Date, days: number): Date {
-	const dateNew = new Date(date);
-	dateNew.setDate(date.getDate() + days);
-	return dateNew;
+	try {
+		const dateNew = new Date(date);
+		dateNew.setDate(date.getDate() + days);
+		return dateNew;
+	} catch {
+		return new Date(1970);
+	}
 }
 
 /**
@@ -176,6 +180,9 @@ function addDays(date: Date, days: number): Date {
  * @returns "2021-01-01T23:59:59Z"
  */
 function finalOfDay(date: Date): Date {
+	if (!isValidDate(date)) {
+		return new Date(1970);
+	}
 	const dateNew = addDays(new Date(date), 1);
 	return new Date(new Date(dateNew).getTime() - 1);
 }

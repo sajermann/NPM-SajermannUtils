@@ -78,6 +78,7 @@ function isValidCnpj(cnpj: string): boolean {
  * @returns "07.526.557/0001-00"
  */
  function addCnpjMask(value: string): string {
+	try{
 	if (value.length !== 14) {
 		return value;
 	}
@@ -85,6 +86,9 @@ function isValidCnpj(cnpj: string): boolean {
 		/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
 		'$1.$2.$3/$4-$5'
 	);
+	}catch{
+		return ''
+	}
 }
 
 /**
@@ -94,7 +98,11 @@ function isValidCnpj(cnpj: string): boolean {
  * @returns "07526557000100"
  */
 function removeCnpjMask(value: string): string {
-	return value.replace(/[^\d]+/g, '');
+	try{
+		return value.replace(/[^\d]+/g, '');
+	}catch{
+		return '';
+	}
 }
 
 

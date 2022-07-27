@@ -81,6 +81,11 @@ describe('Validate isValidCnpj', () => {
 		const result = isValidCnpj('99999999999999');
 		expect(result).toBeFalsy();
 	});
+
+	test(`Must result false (throw)`, () => {
+		const result = isValidCnpj(undefined as unknown as string);
+		expect(result).toEqual(false);
+	});
 });
 
 describe('Validate addCnpjMask', () => {
@@ -116,6 +121,11 @@ describe('Validate addCnpjMask', () => {
 		const result = addCnpjMask(cnpjInCorrectWithoutMask4);
 		expect(result).toEqual(cnpjInCorrectWithoutMask4);
 	});
+
+	test(`Must result string empty (throw)`, () => {
+		const result = addCnpjMask(undefined as unknown as string);
+		expect(result).toEqual('');
+	});
 });
 
 describe('Validate removeCnpjMask', () => {
@@ -125,5 +135,10 @@ describe('Validate removeCnpjMask', () => {
 	test(`Must result ${cnpjWithoutMask}`, () => {
 		const result = removeCnpjMask(cnpjWithMask);
 		expect(result).toEqual(cnpjWithoutMask);
+	});
+
+	test(`Must result string empty (throw)`, () => {
+		const result = removeCnpjMask(undefined as unknown as string);
+		expect(result).toEqual('');
 	});
 });

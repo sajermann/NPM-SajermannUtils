@@ -33,12 +33,12 @@ describe('Validate stringToDate', () => {
 
 	test('Must result correct New Date with parameter null', () => {
 		const result = stringToDate(null as unknown as string);
-		expect(result.toDateString()).toEqual(new Date().toDateString());
+		expect(result.toDateString()).toEqual(new Date(1970).toDateString());
 	});
 
 	test('Must result correct New Date with parameter incorrect', () => {
 		const result = stringToDate('31-05-1991');
-		expect(result.toDateString()).toEqual(new Date().toDateString());
+		expect(result.toDateString()).toEqual(new Date(1970).toDateString());
 	});
 });
 
@@ -50,12 +50,12 @@ describe('Validate stringToDateHour', () => {
 
 	test('Must result correct New Date with parameter null', () => {
 		const result = stringToDateHour(null as unknown as string);
-		expect(result.toDateString()).toEqual(new Date().toDateString());
+		expect(result.toDateString()).toEqual(new Date(1970).toDateString());
 	});
 
 	test('Must result correct New Date with parameter incorrect', () => {
 		const result = stringToDateHour('31-05-1991 12 00 00');
-		expect(result.toDateString()).toEqual(new Date().toDateString());
+		expect(result.toDateString()).toEqual(new Date(1970).toDateString());
 	});
 });
 
@@ -159,6 +159,11 @@ describe('Validate addDays', () => {
 		dateNew.setDate(dateNew.getDate() + -1);
 		expect(result).toEqual(dateNew);
 	});
+
+	test('Must result new Date(1970) with parameter undefined', () => {
+		const result = addDays(undefined as unknown as Date, 1);
+		expect(result).toEqual(new Date(1970));
+	});
 });
 
 describe('Validate finalOfDay', () => {
@@ -167,5 +172,10 @@ describe('Validate finalOfDay', () => {
 		const result = finalOfDay(new Date(fixture));
 		const dateNew = addDays(new Date(fixture), 1);
 		expect(result).toEqual(new Date(new Date(dateNew).getTime() - 1));
+	});
+
+	test('Must result new Date(1970) with parameter undefined', () => {
+		const result = finalOfDay(new Error() as unknown as Date);
+		expect(result).toEqual(new Date(1970));
 	});
 });
