@@ -1,4 +1,16 @@
 /**
+ * ## IsLeapYear
+ * ### Verify if is bissextile year
+ * @formatPatternIncoming "2020"
+ * @example "isLeapYear(2020)"
+ * @returns "true"
+ */
+function isLeapYear(fullYear: number): boolean {
+	if (typeof fullYear !== 'number') return false;
+	return (fullYear % 4 === 0 && fullYear % 100 !== 0) || fullYear % 400 === 0;
+}
+
+/**
  * ## IsValidDate
  * ### Verify if date is valid
  * @formatPatternIncoming "new Date()"
@@ -11,6 +23,105 @@ function isValidDate(date: Date): boolean {
 			return false;
 		}
 		return date instanceof Date && !Number.isNaN(date);
+	} catch {
+		return false;
+	}
+}
+
+/**
+ * ## IsValidDay
+ * ### Verify if day is valid
+ * @example isValidDay(32)
+ * @returns false
+ * @example isValidDay(31)
+ * @returns true
+ */
+function isValidDay(day: number): boolean {
+	if (typeof day !== 'number') return false;
+	if (day < 1 || day > 31) return false;
+	return true;
+}
+
+/**
+ * ## IsValidMonth
+ * ### Verify if month is valid
+ * @example isValidMonth(13)
+ * @returns false
+ * @example isValidMonth(5)
+ * @returns true
+ */
+function isValidMonth(month: number): boolean {
+	if (typeof month !== 'number') return false;
+	if (month < 1 || month > 12) return false;
+	return true;
+}
+
+/**
+ * ## IsValidFullYear
+ * ### Verify if year is valid
+ * @min 100
+ * @max 99999
+ * @example isValidMonth(13)
+ * @returns false
+ * @example isValidMonth(5)
+ * @returns true
+ */
+function isValidFullYear(fullYear: number): boolean {
+	if (typeof fullYear !== 'number') return false;
+	if (fullYear < 100 || fullYear > 99999) return false;
+	return true;
+}
+
+type PropsIsValidDateDeep = {
+	day: number;
+	month: number;
+	fullYear: number;
+};
+/**
+ * ## IsValidDateDeep
+ * ### Verify if is valid date with deep
+ * @example isValidMonth({day: 31, month: 2, fullYear: 1991})
+ * @returns false
+ * @example isValidMonth({day: 31, month: 5, fullYear: 1991})
+ * @returns true
+ */
+function isValidDateDeep({
+	day,
+	month,
+	fullYear,
+}: PropsIsValidDateDeep): boolean {
+	try {
+		if (
+			!isValidDay(day) ||
+			!isValidMonth(month) ||
+			!isValidFullYear(fullYear)
+		) {
+			return false;
+		}
+		const allows = {
+			months: [1],
+		};
+
+		if (day === 31) {
+			allows.months = [1, 3, 5, 7, 8, 10, 12];
+		}
+
+		if (day === 30) {
+			allows.months = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+		}
+
+		if ((day === 29 && isLeapYear(fullYear)) || day < 29) {
+			allows.months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+		}
+
+		if (day === 29 && !isLeapYear(fullYear)) {
+			allows.months = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+		}
+
+		if (allows.months.includes(month)) {
+			return true;
+		}
+		return false;
 	} catch {
 		return false;
 	}
@@ -197,4 +308,9 @@ export {
 	formatHour,
 	addDays,
 	finalOfDay,
+	isLeapYear,
+	isValidDay,
+	isValidMonth,
+	isValidFullYear,
+	isValidDateDeep,
 };

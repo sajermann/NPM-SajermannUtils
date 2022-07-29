@@ -8,21 +8,140 @@ import {
 	addDays,
 	finalOfDay,
 	isValidDate,
+	isLeapYear,
+	isValidDay,
+	isValidFullYear,
+	isValidMonth,
+	isValidDateDeep,
 } from '.';
+
+describe('Validate isValidDay', () => {
+	test('Must result true', () => {
+		const result = isValidDay(31);
+		expect(result).toEqual(true);
+	});
+
+	test('Must result false', () => {
+		const result = isValidDay(32);
+		expect(result).toEqual(false);
+	});
+
+	test('Must result false (throw)', () => {
+		const result = isValidDay(undefined as unknown as number);
+		expect(result).toEqual(false);
+	});
+});
+
+describe('Validate isValidMonth', () => {
+	test('Must result true', () => {
+		const result = isValidMonth(5);
+		expect(result).toEqual(true);
+	});
+
+	test('Must result false', () => {
+		const result = isValidMonth(13);
+		expect(result).toEqual(false);
+	});
+
+	test('Must result false (throw)', () => {
+		const result = isValidMonth(undefined as unknown as number);
+		expect(result).toEqual(false);
+	});
+});
+
+describe('Validate isValidFullYear', () => {
+	test('Must result true', () => {
+		const result = isValidFullYear(2022);
+		expect(result).toEqual(true);
+	});
+
+	test('Must result false', () => {
+		const result = isValidFullYear(1);
+		expect(result).toEqual(false);
+	});
+
+	test('Must result false (throw)', () => {
+		const result = isValidFullYear(undefined as unknown as number);
+		expect(result).toEqual(false);
+	});
+});
+
+describe('Validate isValidDateDeep', () => {
+	test('Must result true', () => {
+		const result = isValidDateDeep({ day: 31, month: 5, fullYear: 1991 });
+		expect(result).toEqual(true);
+	});
+
+	test('Must result false', () => {
+		const result = isValidDateDeep({ day: 30, month: 2, fullYear: 1991 });
+		expect(result).toEqual(false);
+	});
+
+	test('Must result false (throw)', () => {
+		const result = isValidDateDeep(
+			{} as unknown as { day: number; month: number; fullYear: number }
+		);
+		expect(result).toEqual(false);
+	});
+
+	test('Must result true because leap year', () => {
+		const result = isValidDateDeep({ day: 29, month: 2, fullYear: 2020 });
+		expect(result).toEqual(true);
+	});
+
+	test('Must result false because not leap year', () => {
+		const result = isValidDateDeep({ day: 29, month: 2, fullYear: 2022 });
+		expect(result).toEqual(false);
+	});
+});
 
 describe('Validate isValidDate', () => {
 	test('Must result true', () => {
 		const result = isValidDate(new Date('1991-05-31'));
 		expect(result).toEqual(true);
 	});
+
 	test('Must result false', () => {
 		const result = isValidDate(new Date('Test'));
 		expect(result).toEqual(false);
 	});
-	// test('Must result false', () => {
-	// 	const result = isValidDate(undefined as unknown as Date);
-	// 	expect(result).toEqual(false);
-	// });
+
+	test('Must result false (throw)', () => {
+		const result = isValidDate(undefined as unknown as Date);
+		expect(result).toEqual(false);
+	});
+});
+
+describe('Validate isLeapYear', () => {
+	test('Must result true', () => {
+		const result = isLeapYear(2020);
+		expect(result).toEqual(true);
+	});
+
+	test('Must result false', () => {
+		const result = isLeapYear(2021);
+		expect(result).toEqual(false);
+	});
+
+	test('Must result false', () => {
+		const result = isLeapYear(2022);
+		expect(result).toEqual(false);
+	});
+
+	test('Must result false', () => {
+		const result = isLeapYear(2023);
+		expect(result).toEqual(false);
+	});
+
+	test('Must result true', () => {
+		const result = isLeapYear(2024);
+		expect(result).toEqual(true);
+	});
+
+	test('Must result false', () => {
+		const result = isLeapYear('2024' as unknown as number);
+		expect(result).toEqual(false);
+	});
 });
 
 describe('Validate stringToDate', () => {
