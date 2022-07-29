@@ -1,9 +1,11 @@
 /**
  * ## IsLeapYear
  * ### Verify if is bissextile year
- * @formatPatternIncoming "2020"
- * @example "isLeapYear(2020)"
- * @returns "true"
+ * @example
+ * ```js
+ * isLeapYear(2020) // returns: true
+ * isLeapYear(2021) // returns: false
+ * ```
  */
 function isLeapYear(fullYear: number): boolean {
 	if (typeof fullYear !== 'number') return false;
@@ -11,11 +13,16 @@ function isLeapYear(fullYear: number): boolean {
 }
 
 /**
- * ## IsValidDate
+ * ## isValidDate
  * ### Verify if date is valid
- * @formatPatternIncoming "new Date()"
- * @example "new Date(2022, 1, 1)"
- * @returns "true"
+ * Warning: For Javascript new Date(2022, 1, 31) is Thu Mar 03 2022 00:00:00 GMT-0300,
+ * if you look for something more assertive try: isValidDateDeep()
+ * @example
+ * ```js
+ * isValidDate(new Date(2022, 1, 1)) // returns: true
+ * isValidDate(new Date(2022, 1, 32)) // returns: true
+ * isValidDate(undefined as unknown as Date) // returns: false
+ * ```
  */
 function isValidDate(date: Date): boolean {
 	try {
@@ -30,11 +37,13 @@ function isValidDate(date: Date): boolean {
 
 /**
  * ## IsValidDay
- * ### Verify if day is valid
- * @example isValidDay(32)
- * @returns false
- * @example isValidDay(31)
- * @returns true
+ * ### Verify if day of month is valid
+ * @example
+ * ```js
+ * isValidDay(32) // returns: false
+ * isValidDay(31) // returns: true
+ * isValidDay(null as unknown as number) // returns: false
+ * ```
  */
 function isValidDay(day: number): boolean {
 	if (typeof day !== 'number') return false;
@@ -44,11 +53,13 @@ function isValidDay(day: number): boolean {
 
 /**
  * ## IsValidMonth
- * ### Verify if month is valid
- * @example isValidMonth(13)
- * @returns false
- * @example isValidMonth(5)
- * @returns true
+ * ### Verify if month of year is valid
+ * @example
+ * ```js
+ * isValidMonth(13) // returns: false
+ * isValidMonth(5) // returns: true
+ * isValidMonth(null as unknown as number) // returns: false
+ * ```
  */
 function isValidMonth(month: number): boolean {
 	if (typeof month !== 'number') return false;
@@ -61,10 +72,12 @@ function isValidMonth(month: number): boolean {
  * ### Verify if year is valid
  * @min 100
  * @max 99999
- * @example isValidMonth(13)
- * @returns false
- * @example isValidMonth(5)
- * @returns true
+ * @example
+ * ```js
+ * isValidFullYear(1) // returns: false
+ * isValidFullYear(2022) // returns: true
+ * isValidFullYear(null as unknown as number) // returns: false
+ * ```
  */
 function isValidFullYear(fullYear: number): boolean {
 	if (typeof fullYear !== 'number') return false;
@@ -78,12 +91,14 @@ type PropsIsValidDateDeep = {
 	fullYear: number;
 };
 /**
- * ## IsValidDateDeep
+ * ## IsValidMonth
  * ### Verify if is valid date with deep
- * @example isValidMonth({day: 31, month: 2, fullYear: 1991})
- * @returns false
- * @example isValidMonth({day: 31, month: 5, fullYear: 1991})
- * @returns true
+ * @example
+ * ```js
+ * isValidDateDeep({day: 31, month: 2, fullYear: 1991}) // returns: false
+ * isValidDateDeep({day: 31, month: 5, fullYear: 1991}) // returns: true
+ * isValidDateDeep(null as unknown as number) // returns: false
+ * ```
  */
 function isValidDateDeep({
 	day,
@@ -99,23 +114,21 @@ function isValidDateDeep({
 			return false;
 		}
 		const allows = {
-			months: [1],
+			months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 		};
 
 		if (day === 31) {
-			allows.months = [1, 3, 5, 7, 8, 10, 12];
+			const notAllowsMonths = [2, 4, 6, 9, 11];
+			allows.months = allows.months.filter(
+				monthsTemp => !notAllowsMonths.includes(monthsTemp)
+			);
 		}
 
-		if (day === 30) {
-			allows.months = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-		}
-
-		if ((day === 29 && isLeapYear(fullYear)) || day < 29) {
-			allows.months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-		}
-
-		if (day === 29 && !isLeapYear(fullYear)) {
-			allows.months = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+		if ((day === 29 && !isLeapYear(fullYear)) || day === 30) {
+			const notAllowsMonths = [2];
+			allows.months = allows.months.filter(
+				monthsTemp => !notAllowsMonths.includes(monthsTemp)
+			);
 		}
 
 		if (allows.months.includes(month)) {
@@ -130,9 +143,11 @@ function isValidDateDeep({
 /**
  * ## StringToDate
  * ### Convert string to new Date
- * @formatPatternIncoming "dd/MM/YYYY"
- * @example "31/05/1991"
- * @returns "new Date()"
+ * @example
+ * ```js
+ * stringToDate("31/05/1991") // returns: Fri May 31 1991 00:00:00 GMT-0300
+ * stringToDate(null as unknown as string) // returns: Wed Dec 31 1969 21:00:01 GMT-0300
+ * ```
  */
 function stringToDate(data: string): Date {
 	try {
@@ -153,9 +168,11 @@ function stringToDate(data: string): Date {
 /**
  * ## StringToDateHour
  * ### Convert string to new Date with Hour
- * @formatPatternIncoming "dd/MM/YYYY HH:mm:ss"
- * @example "31/05/1991 12:30:01"
- * @returns "new Date()"
+ * @example
+ * ```js
+ * stringToDateHour("31/05/1991 12:30:01") // returns: Fri May 31 1991 12:30:01 GMT-0300
+ * stringToDateHour(null as unknown as string) // returns: Wed Dec 31 1969 21:00:01 GMT-0300
+ * ```
  */
 function stringToDateHour(data: string): Date {
 	try {
@@ -179,31 +196,13 @@ function stringToDateHour(data: string): Date {
 }
 
 /**
- * ## StringToDate
- * ### Convert string to string ISO
- * @formatPatternIncoming "dd/MM/YYYY"
- * @example "31/05/1991"
- * @returns "1991-05-31"
- */
-function stringToDateIso(data: string): string {
-	try {
-		const arrayValues = data.split('/');
-		const year = parseInt(arrayValues[2], 10);
-		const month = parseInt(arrayValues[1], 10) - 1;
-		const day = parseInt(arrayValues[0], 10);
-		const t = new Date(year, month, day);
-		return t.toISOString().split('T')[0];
-	} catch {
-		return '';
-	}
-}
-
-/**
  * ## FormatDateAndHour
- * ### Convert Date to string
- * @formatPatternIncoming "yyyy-MM-ddTHH:mm:ssZ"
- * @example "2021-01-01T00:00:00Z"
- * @returns "01/01/2021 00:00:00"
+ * ### Format Date to string friendly
+ * @example
+ * ```js
+ * formatDateAndHour("2021-01-01T00:00:00Z") // returns: "01/01/2021 00:00:00"
+ * formatDateAndHour(null as unknown as Date) // returns: ""
+ * ```
  */
 function formatDateAndHour(date: Date): string {
 	try {
@@ -228,10 +227,12 @@ function formatDateAndHour(date: Date): string {
 
 /**
  * ## FormatDate
- * ### Convert Date to string
- * @formatPatternIncoming "yyyy-MM-ddTHH:mm:ssZ"
- * @example "2021-01-01T00:00:00Z"
- * @returns "01/01/2021"
+ * ### Format Date to string friendly
+ * @example
+ * ```js
+ * formatDate("2021-01-01T00:00:00Z") // returns: "01/01/2021"
+ * formatDate(null as unknown as Date) // returns: ""
+ * ```
  */
 function formatDate(date: Date): string {
 	try {
@@ -248,10 +249,12 @@ function formatDate(date: Date): string {
 
 /**
  * ## FormatHour
- * ### Convert Date to string
- * @formatPatternIncoming "yyyy-MM-ddTHH:mm:ssZ"
- * @example "2021-01-01T15:00:00Z"
- * @returns "15:00:00"
+ * ### Format Hour to string friendly
+ * @example
+ * ```js
+ * formatHour("2021-01-01T15:00:00Z") // returns: "15:00:00"
+ * formatHour(null as unknown as Date) // returns: ""
+ * ```
  */
 function formatHour(date: Date): string {
 	try {
@@ -269,9 +272,11 @@ function formatHour(date: Date): string {
 /**
  * ## AddDays
  * ### Add days to Date
- * @formatPatternIncoming "date: 2021-01-01T15:00:00Z, days: 5"
- * @example "2021-01-01T15:00:00Z"
- * @returns "2021-01-06T15:00:00Z"
+ * @example
+ * ```js
+ * addDays(new Date("2021-01-01T15:00:00Z"), 5) // returns: Wed Jan 06 2021 12:00:00 GMT-0300
+ * addDays(null as unknown as Date, 5) // returns: Wed Dec 31 1969 21:00:01 GMT-0300
+ * ```
  */
 function addDays(date: Date, days: number): Date {
 	try {
@@ -286,9 +291,11 @@ function addDays(date: Date, days: number): Date {
 /**
  * ## FinalOfDay
  * ### Returns Day With Hour 23:59:59
- * @formatPatternIncoming "date: 2021-01-01T15:00:00Z"
- * @example "2021-01-01T15:00:00Z"
- * @returns "2021-01-01T23:59:59Z"
+ * @example
+ * ```js
+ * finalOfDay(new Date("2021-01-01T15:00:00Z")) // returns: Fri Jan 01 2021 20:59:59 GMT-0300
+ * finalOfDay(null as unknown as Date, 5) // returns: Wed Dec 31 1969 21:00:01 GMT-0300
+ * ```
  */
 function finalOfDay(date: Date): Date {
 	if (!isValidDate(date)) {
@@ -302,7 +309,6 @@ export {
 	isValidDate,
 	stringToDate,
 	stringToDateHour,
-	stringToDateIso,
 	formatDateAndHour,
 	formatDate,
 	formatHour,

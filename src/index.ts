@@ -1,7 +1,3 @@
-import { isValidDateDeep } from './FormatDate';
+import { isValidDateDeep, isValidDay } from './FormatDate';
 
-console.log(
-	isValidDateDeep(
-		null as unknown as { day: number; month: number; fullYear: number }
-	)
-);
+console.log(isValidDay(null as unknown as number));

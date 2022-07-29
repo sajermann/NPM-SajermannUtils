@@ -1,7 +1,6 @@
 import {
 	stringToDate,
 	stringToDateHour,
-	stringToDateIso,
 	formatDateAndHour,
 	formatDate,
 	formatHour,
@@ -175,18 +174,6 @@ describe('Validate stringToDateHour', () => {
 	test('Must result correct New Date with parameter incorrect', () => {
 		const result = stringToDateHour('31-05-1991 12 00 00');
 		expect(result.toDateString()).toEqual(new Date(1970).toDateString());
-	});
-});
-
-describe('Validate stringToDateIso', () => {
-	test('Must result correct date with parameter correct', () => {
-		const result = stringToDateIso('31/05/1991');
-		expect(result).toEqual('1991-05-31');
-	});
-
-	test('Must result empty string with parameter null', () => {
-		const result = stringToDateIso(null as unknown as string);
-		expect(result).toEqual('');
 	});
 });
 
