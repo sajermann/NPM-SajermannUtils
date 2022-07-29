@@ -1,8 +1,10 @@
 /**
- * ## Delay
- * ### Simulate delay
- * @example delay(3000)
- * @returns void
+ * ### Delay
+ * Simulate delay
+ * @example
+ * ```js
+ * await delay(3000) // returns: simulate delay of 3 seconds
+ * ```
  */
 function delay(delayMs: number): Promise<void> {
 	return new Promise(resolve => {

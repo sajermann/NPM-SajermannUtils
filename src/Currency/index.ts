@@ -1,9 +1,12 @@
 /* eslint-disable import/prefer-default-export */
+
 /**
- * ## formatForReal
- * ### Format number from number to currency's Brazil
- * @example 10.99
- * @returns "R$ 10,99"
+ * ### FormatForReal
+ * Add mask in value for brazilian currency
+ * @example
+ * ```js
+ * formatForReal(10.99) // returns: "R$ 10,99"
+ * ```
  */
 function formatForReal(
 	value: number,

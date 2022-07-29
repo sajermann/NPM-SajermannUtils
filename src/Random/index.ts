@@ -1,11 +1,13 @@
 /* eslint-disable no-bitwise */
 
 /**
- * ## GenerateNumbers
- * ### Return String Numbers
- * @formatPatternIncoming "number"
- * @exemple "generateNumbers(3)"
- * @returns "153"
+ * ### GenerateNumbers
+ * Return string numbers
+ * @example
+ * ```js
+ * generateNumbers(3) // returns: 269 (Random)
+ * generateNumbers(10) // returns: 1230569830 (Random)
+ * ```
  */
 function generateNumbers(quantityCharacters: number): string {
 	if (quantityCharacters < 1) {
@@ -20,10 +22,12 @@ function generateNumbers(quantityCharacters: number): string {
 }
 
 /**
- * ## GenerateGuid
- * ### Return String Guid
- * @exemple "generateGuid()"
- * @returns "58ae706d-25c6-4bfd-b8d9-68c7d2356eca"
+ * ### GenerateGuid
+ * Return string Guid
+ * @example
+ * ```js
+ * generateGuid() // returns: "58ae706d-25c6-4bfd-b8d9-68c7d2356eca"
+ * ```
  */
 function generateGuid(): string {
 	let d = new Date().getTime();

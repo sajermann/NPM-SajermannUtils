@@ -1,9 +1,10 @@
 /**
- * ## b64EncodeUnicode
- * ### Convert String to Base64
- * @formatPatternIncoming "string"
- * @exemple "AÁoõ!@#UÚ"
- * @returns "QcOBb8O1IUAjVcOa"
+ * ### b64EncodeUnicode
+ * Convert String to Base64
+ * @example
+ * ```js
+ * b64EncodeUnicode("AÁoõ!@#UÚ")) // returns: QcOBb8O1IUAjVcOa
+ * ```
  */
 function b64EncodeUnicode(str: string) {
 	return btoa(
@@ -14,11 +15,12 @@ function b64EncodeUnicode(str: string) {
 }
 
 /**
- * ## b64DecodeUnicode
- * ### Convert Base64 to String
- * @formatPatternIncoming "string"
- * @exemple "QcOBb8O1IUAjVcOa"
- * @returns "AÁoõ!@#UÚ"
+ * ### b64DecodeUnicode
+ * Convert Base64 to String
+ * @example
+ * ```js
+ * b64DecodeUnicode("QcOBb8O1IUAjVcOa")) // returns: AÁoõ!@#UÚ
+ * ```
  */
 function b64DecodeUnicode(str: string) {
 	return decodeURIComponent(

@@ -1,6 +1,6 @@
 /**
- * ## IsLeapYear
- * ### Verify if is bissextile year
+ * ### IsLeapYear
+ * Verify if is bissextile year
  * @example
  * ```js
  * isLeapYear(2020) // returns: true
@@ -13,8 +13,8 @@ function isLeapYear(fullYear: number): boolean {
 }
 
 /**
- * ## isValidDate
- * ### Verify if date is valid
+ * ### isValidDate
+ * Verify if date is valid
  * Warning: For Javascript new Date(2022, 1, 31) is Thu Mar 03 2022 00:00:00 GMT-0300,
  * if you look for something more assertive try: isValidDateDeep()
  * @example
@@ -36,8 +36,8 @@ function isValidDate(date: Date): boolean {
 }
 
 /**
- * ## IsValidDay
- * ### Verify if day of month is valid
+ * ### IsValidDay
+ * Verify if day of month is valid
  * @example
  * ```js
  * isValidDay(32) // returns: false
@@ -52,8 +52,8 @@ function isValidDay(day: number): boolean {
 }
 
 /**
- * ## IsValidMonth
- * ### Verify if month of year is valid
+ * ### IsValidMonth
+ * Verify if month of year is valid
  * @example
  * ```js
  * isValidMonth(13) // returns: false
@@ -68,8 +68,8 @@ function isValidMonth(month: number): boolean {
 }
 
 /**
- * ## IsValidFullYear
- * ### Verify if year is valid
+ * ### IsValidFullYear
+ * Verify if year is valid
  * @min 100
  * @max 99999
  * @example
@@ -91,8 +91,8 @@ type PropsIsValidDateDeep = {
 	fullYear: number;
 };
 /**
- * ## IsValidMonth
- * ### Verify if is valid date with deep
+ * ### IsValidDateDeep
+ * Verify if is valid date with deep
  * @example
  * ```js
  * isValidDateDeep({day: 31, month: 2, fullYear: 1991}) // returns: false
@@ -141,8 +141,8 @@ function isValidDateDeep({
 }
 
 /**
- * ## StringToDate
- * ### Convert string to new Date
+ * ### StringToDate
+ * Convert string to new Date
  * @example
  * ```js
  * stringToDate("31/05/1991") // returns: Fri May 31 1991 00:00:00 GMT-0300
@@ -166,8 +166,8 @@ function stringToDate(data: string): Date {
 }
 
 /**
- * ## StringToDateHour
- * ### Convert string to new Date with Hour
+ * ### StringToDateHour
+ * Convert string to new Date with Hour
  * @example
  * ```js
  * stringToDateHour("31/05/1991 12:30:01") // returns: Fri May 31 1991 12:30:01 GMT-0300
@@ -196,8 +196,8 @@ function stringToDateHour(data: string): Date {
 }
 
 /**
- * ## FormatDateAndHour
- * ### Format Date to string friendly
+ * ### FormatDateAndHour
+ * Format Date to string friendly
  * @example
  * ```js
  * formatDateAndHour("2021-01-01T00:00:00Z") // returns: "01/01/2021 00:00:00"
@@ -226,8 +226,8 @@ function formatDateAndHour(date: Date): string {
 }
 
 /**
- * ## FormatDate
- * ### Format Date to string friendly
+ * ### FormatDate
+ * Format Date to string friendly
  * @example
  * ```js
  * formatDate("2021-01-01T00:00:00Z") // returns: "01/01/2021"
@@ -248,8 +248,8 @@ function formatDate(date: Date): string {
 }
 
 /**
- * ## FormatHour
- * ### Format Hour to string friendly
+ * ### FormatHour
+ * Format Hour to string friendly
  * @example
  * ```js
  * formatHour("2021-01-01T15:00:00Z") // returns: "15:00:00"
@@ -270,8 +270,8 @@ function formatHour(date: Date): string {
 }
 
 /**
- * ## AddDays
- * ### Add days to Date
+ * ### AddDays
+ * Add days to Date
  * @example
  * ```js
  * addDays(new Date("2021-01-01T15:00:00Z"), 5) // returns: Wed Jan 06 2021 12:00:00 GMT-0300
@@ -289,8 +289,8 @@ function addDays(date: Date, days: number): Date {
 }
 
 /**
- * ## FinalOfDay
- * ### Returns Day With Hour 23:59:59
+ * ### FinalOfDay
+ * Returns Day With Hour 23:59:59
  * @example
  * ```js
  * finalOfDay(new Date("2021-01-01T15:00:00Z")) // returns: Fri Jan 01 2021 20:59:59 GMT-0300

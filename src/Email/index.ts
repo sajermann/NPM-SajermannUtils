@@ -1,10 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 /**
- * ## IsValidEmail
- * ### Verify if email is valid
- * @formatPatternIncoming "string"
- * @example "sajermannbruno@gmail"
- * @returns false
+ * ### IsValidEmail
+ * Verify if email is valid
+ * @example
+ * ```js
+ * isValidEmail("sajermannbruno@gmail") // returns: false
+ * isValidEmail("sajermannbruno@gmail.com") // returns: true
+ * ```
  */
 function isValidEmail(str: string): boolean {
 	try {

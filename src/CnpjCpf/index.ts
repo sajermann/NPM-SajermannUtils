@@ -2,11 +2,12 @@
 /* eslint-disable prettier/prettier */
 
 /**
- * ## IsValidCnpj
- * ### Verify if Cnpj is Valid
- * @formatPatternIncoming "string"
- * @example "12345678901234"
- * @returns "false"
+ * ### IsValidCnpj
+ * Verify if Cnpj is valid
+ * @example
+ * ```js
+ * isValidCnpj("12345678901234")) // returns: false
+ * ```
  */
 function isValidCnpj(cnpj: string): boolean {
 	try{
@@ -72,10 +73,12 @@ function isValidCnpj(cnpj: string): boolean {
 }
 
 /**
- * ## addCnpjMask
- * ### Add Mask in Cnpj
- * @example "07526557000100"
- * @returns "07.526.557/0001-00"
+ * ### AddCnpjMask
+ * Add Mask in Cnpj
+ * @example
+ * ```js
+ * addCnpjMask("07526557000100")) // returns: "07.526.557/0001-00"
+ * ```
  */
  function addCnpjMask(value: string): string {
 	try{
@@ -91,11 +94,14 @@ function isValidCnpj(cnpj: string): boolean {
 	}
 }
 
+
 /**
- * ## removeCnpjMask
- * ### Add Mask in Cnpj
- * @example "07.526.557/0001-00"
- * @returns "07526557000100"
+ * ### RemoveCnpjMask
+ * Remove Mask from Cnpj
+ * @example
+ * ```js
+ * removeCnpjMask("07.526.557/0001-00")) // returns: "07526557000100"
+ * ```
  */
 function removeCnpjMask(value: string): string {
 	try{
