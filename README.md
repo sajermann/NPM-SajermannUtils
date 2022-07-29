@@ -8,13 +8,13 @@ algumas funções podem mudar, atente-se a versão.
 ### b64EncodeUnicode
 Convert String to Base64
 ```js
-b64EncodeUnicode("AÁoõ!@#UÚ")) // returns: QcOBb8O1IUAjVcOa
+b64EncodeUnicode("AÁoõ!@#UÚ") // returns: QcOBb8O1IUAjVcOa
 ```
 
 ### b64DecodeUnicode
 Convert Base64 to String
 ```js
-b64DecodeUnicode("QcOBb8O1IUAjVcOa")) // returns: AÁoõ!@#UÚ
+b64DecodeUnicode("QcOBb8O1IUAjVcOa") // returns: AÁoõ!@#UÚ
 ```
 
 ## CnpjCpf
@@ -22,19 +22,19 @@ b64DecodeUnicode("QcOBb8O1IUAjVcOa")) // returns: AÁoõ!@#UÚ
 ### IsValidCnpj
 Verify if Cnpj is valid
 ```js
-isValidCnpj("12345678901234")) // returns: false
+isValidCnpj("12345678901234") // returns: false
 ```
 
 ### AddCnpjMask
 Add Mask in Cnpj
 ```js
-addCnpjMask("07526557000100")) // returns: "07.526.557/0001-00"
+addCnpjMask("07526557000100") // returns: "07.526.557/0001-00"
 ```
 
 ### RemoveCnpjMask
 Remove Mask from Cnpj
 ```js
-removeCnpjMask("07.526.557/0001-00")) // returns: "07526557000100"
+removeCnpjMask("07.526.557/0001-00") // returns: "07526557000100"
 ```
 
 ## Currency
